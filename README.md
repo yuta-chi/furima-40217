@@ -27,18 +27,15 @@
 | description        | text       | null: false                    |
 | category_id        | integer    | null: false                    |
 | price              | integer    | null: false                    |
-| image              | string     | null: false                    |
 | condition_id       | integer    | null: false                    |
 | delivery_cost_id   | integer    | null: false                    |
-| sales_commission   | integer    | null: false                    |
-| sales_profit       | integer    | null: false                    |
 | prefecture_id      | integer    | null: false                    |
 | shipping_date_id   | integer    | null: false                    |
 
 
 ### Association
-- belongs_to :users
-- has_one :orders
+- belongs_to :user
+- has_one :order
 
 ## ordersテーブル
 
@@ -48,7 +45,7 @@
 | product       | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :users
+- belongs_to :user
 - has_one :product
 - has_one :shipping_information
 
