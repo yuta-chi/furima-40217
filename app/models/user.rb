@@ -9,8 +9,6 @@ class User < ApplicationRecord
 
   with_options presence: true do
     validates :nickname
-    # @含む・必須であること・一意性はdeviseのデフォルト実装
-    validates :email
     # 値の一致はdeviseのデフォルト実装
     validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i }
 
