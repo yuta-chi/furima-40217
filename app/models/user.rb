@@ -10,9 +10,10 @@ class User < ApplicationRecord
   with_options presence: true do
     validates :nickname
     # @含む・必須であること・一意性はdeviseのデフォルト実装
-    validates :email
+    validates :email, uniqueness: true
     # 値の一致はdeviseのデフォルト実装
-    validates :encrypted_password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i }
+    validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i }
+
     # 全角ひらがな、全角カタカナ、漢字
     validates :last_name, format: { with: /\A[ぁ-んァ-ン一-龯々]+\z/ }
     validates :first_name, format: { with: /\A[ぁ-んァ-ン一-龯々]+\z/ }
