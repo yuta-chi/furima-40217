@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   # ログインしていないユーザーはログインページに
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index,]
 
   def index
     # アクションの処理を実装する
@@ -24,11 +24,4 @@ class ProductsController < ApplicationController
   def product_params
     params.require(:product).permit(:image, :name, :description, :category_id, :condition_id, :delivery_cost_id, :prefecture_id, :shipping_date_id, :price).merge(user_id: current_user.id)
   end
-
-  def set_item
-    @product = Product.find(params[:id])
-  end
-
-
-
 end
