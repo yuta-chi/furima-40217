@@ -13,7 +13,6 @@ class Product < ApplicationRecord
 
   # 入力が必須
   with_options presence: true do
-    validates :user_id
     validates :image
     validates :name
     validates :description
@@ -22,7 +21,7 @@ class Product < ApplicationRecord
     validates :delivery_cost_id
     validates :prefecture_id
     validates :shipping_date_id
-    validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
+    validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, only_integer: true }
   end
 
   # 選択が「--」の時は保存できない
