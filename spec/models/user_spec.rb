@@ -95,12 +95,12 @@ RSpec.describe User, type: :model do
       it '名字が空欄では登録できない' do
         @user.last_name = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name can't be blank", "Last name is invalid")
+        expect(@user.errors.full_messages).to include("Last name can't be blank", 'Last name is invalid')
       end
       it '名前が空欄では登録できない' do
         @user.first_name = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name can't be blank", "First name is invalid")
+        expect(@user.errors.full_messages).to include("First name can't be blank", 'First name is invalid')
       end
       it '名字が全角（漢字・ひらがな・カタカナ）でないと登録できない' do
         @user.last_name = 'yamada'
@@ -115,12 +115,12 @@ RSpec.describe User, type: :model do
       it '名字のフリガナが空欄だと登録できない' do
         @user.last_name_kana = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name kana can't be blank", "Last name kana is invalid")
+        expect(@user.errors.full_messages).to include("Last name kana can't be blank", 'Last name kana is invalid')
       end
       it '名前のフリガナが空欄だと登録できない' do
         @user.first_name_kana = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name kana can't be blank", "First name kana is invalid")
+        expect(@user.errors.full_messages).to include("First name kana can't be blank", 'First name kana is invalid')
       end
       it '名字のフリガナが全角（カタカナ）でないと登録できない' do
         @user.last_name_kana = 'やまだ'
