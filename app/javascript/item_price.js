@@ -1,4 +1,4 @@
-function price() {
+function sell_price() {
   const priceInput = document.getElementById("item-price");
   priceInput.addEventListener("input", () => {
     const inputValue = priceInput.value;
@@ -8,4 +8,4 @@ function price() {
     ProfitDom.innerHTML = inputValue - addTaxDom.innerHTML;
   })
 }
-window.addEventListener("load", price);
+window.addEventListener("load", sell_price);
