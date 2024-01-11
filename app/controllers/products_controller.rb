@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   # ログインしていないユーザーはログインページに
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_product, only: [:show, :edit, :update]
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   def index
     @product = Product.all
@@ -36,6 +36,14 @@ class ProductsController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
+
+  def destroy
+    if current_user.id == @product.user_id
+      @product.destroy
+    end
+    redirect_to root_path
+  end
+
 
   private
 
