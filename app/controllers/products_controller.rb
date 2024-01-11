@@ -24,9 +24,9 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    unless @product.user_id == current_user.id
-      redirect_to root_path
-    end
+    return if @product.user_id == current_user.id
+
+    redirect_to root_path
   end
 
   def update
@@ -36,7 +36,7 @@ class ProductsController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
-  
+
   private
 
   def product_params
