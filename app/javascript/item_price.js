@@ -1,4 +1,4 @@
-function sell_price() {
+window.addEventListener('load', () => {
   const priceInput = document.getElementById("item-price");
   priceInput.addEventListener("input", () => {
     const inputValue = priceInput.value;
@@ -7,5 +7,4 @@ function sell_price() {
     addTaxDom.innerHTML = Math.floor(inputValue * 0.1);
     ProfitDom.innerHTML = inputValue - addTaxDom.innerHTML;
   })
-}
-window.addEventListener("load", sell_price);
+});
