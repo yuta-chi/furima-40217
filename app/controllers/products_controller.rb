@@ -24,7 +24,7 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    return if @product.user_id == current_user.id
+    return if @product.user_id == current_user.id && @product.order.nil?
 
     redirect_to root_path
   end

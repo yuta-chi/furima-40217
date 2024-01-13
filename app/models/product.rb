@@ -2,6 +2,7 @@ class Product < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   # テーブルアソシエーション
   belongs_to :user
+  has_one :order
   # activestorageアソシエーション
   has_one_attached :image
   # active hushアソシエーション
