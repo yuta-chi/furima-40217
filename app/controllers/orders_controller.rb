@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   before_action :non_purchased_item, only: [:index, :create]
 
   def index
-    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
+    gon.public_key = ENV['PAYJP_PUBLIC_KEY']
     @order_form = OrderForm.new
   end
 
@@ -14,20 +14,21 @@ class OrdersController < ApplicationController
       @order_form.save
       redirect_to root_path
     else
-      gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
+      gon.public_key = ENV['PAYJP_PUBLIC_KEY']
       render 'index', status: :unprocessable_entity
     end
   end
 
-
   private
 
   def order_params
-    params.require(:order_form).permit(:post_code, :prefecture_id, :municipalities, :street_address, :building_name, :phone_number).merge(user_id: current_user.id, product_id: params[:product_id], token: params[:token])
+    params.require(:order_form).permit(:post_code, :prefecture_id, :municipalities, :street_address, :building_name, :phone_number).merge(
+      user_id: current_user.id, product_id: params[:product_id], token: params[:token]
+    )
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @product.price, # 商品の値段
       card: order_params[:token], # カードトークン
@@ -39,5 +40,4 @@ class OrdersController < ApplicationController
     @product = Product.find(params[:product_id])
     redirect_to root_path if current_user.id == @product.user_id || @product.order.present?
   end
-
 end
